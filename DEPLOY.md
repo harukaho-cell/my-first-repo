@@ -1,23 +1,29 @@
 # 公開手順
 
-このリポジトリの `public/` フォルダを Web サイトとして公開するための手順です。
-
-現在は **GitHub Pages** で公開しています（下記）。Cloudflare Pages で公開したい場合の手順も後半に残してあります。
-
----
-
-## 現在の公開方法: GitHub Pages（設定済み・自動）
-
-`.github/workflows/deploy-pages.yml` が `main` への push を検知して、`public/` の中身を自動で公開します。
-**追加の設定やアカウント連携は不要です。** 公開URLはこちら。
+このリポジトリは **GitHub Pages** でWebページを公開しています。
 
 ```
 https://harukaho-cell.github.io/my-first-repo/
 ```
 
+---
+
+## 公開のしくみ
+
+`main` ブランチの**直下にあるファイルがそのまま公開**されます（GitHub Pages の「Deploy from a branch」方式。
+2026年5月から有効になっています）。`index.html` がトップページです。
+
+```
+my-first-repo/
+├── index.html               ← トップページとして公開される
+├── sakura-seikotsuin.html   ← /sakura-seikotsuin.html で公開される
+├── .nojekyll                ← ファイルを加工せずそのまま配信する設定
+└── hello.py など            ← 練習用ファイル（同じURL配下に置かれます）
+```
+
 ### 更新のしかた
 
-`public/` の中身を変更して `main` に反映するだけです。1〜2分で公開ページに反映されます。
+ファイルを変更して `main` に反映するだけです。1〜2分で公開ページに反映されます。
 
 ```bash
 git add .
@@ -27,51 +33,44 @@ git push
 
 ### 公開状況の確認
 
-リポジトリの **Actions** タブを開くと、公開処理の進行状況と結果が見られます。
-緑のチェックが付けば公開完了、赤い×が付いていればそこにエラー内容が表示されます。
+リポジトリの **Actions** タブに `pages build and deployment` という実行履歴が出ます。
+緑のチェックが付けば公開完了です。
+
+### ファイルを追加するとき
+
+**トップページを差し替える** → `index.html` を置き換える
+**ページを増やす** → 例えば `about.html` を直下に置くと `.../my-first-repo/about.html` で表示される
+**画像を使う** → 直下に置いて `<img src="photo.jpg">` のように参照する
+
+### 公開フォルダを分けたい場合（任意）
+
+練習用ファイルを公開URLの配下に置きたくない場合は、GitHub の
+**Settings → Pages → Build and deployment → Source** を `GitHub Actions` に切り替えると、
+指定したフォルダだけを公開する方式に変更できます。切り替える場合は言ってください、設定ファイルを用意します。
 
 ---
 
-## この構成について
+# （参考）別のファイルを公開したいとき
 
-公開されるのは **`public/` フォルダの中身だけ** です。
+## 手元のHTMLファイルを公開する
 
-```
-my-first-repo/
-├── public/                      ← ここが公開される（＝Webサイトの中身）
-│   ├── index.html               ← トップページ（床屋ぐっさん）
-│   └── sakura-seikotsuin.html   ← 以前の練習ページ（残してあります）
-├── hello.py         ← 公開されない（練習用ファイル）
-├── hello.txt        ← 公開されない
-└── *.jpg            ← 公開されない
-```
+公開したいファイルをリポジトリの**直下**に置きます。
 
-`public/index.html` が `https://（サイト名）.pages.dev/` として表示されます。
-以前の整骨院のページは `https://（サイト名）.pages.dev/sakura-seikotsuin.html` で見られます。
-練習用のファイルや画像は公開対象から外れるので、そのまま置いておいて問題ありません。
+- **トップページにしたい場合** → ファイル名を `index.html` にして置き換える
+- **ページを増やしたい場合** → 例えば `about.html` として置くと
+  `https://harukaho-cell.github.io/my-first-repo/about.html` で表示される
 
----
-
-## 手順1: 公開したいファイルを `public/` に入れる
-
-ダウンロードフォルダにある HTML ファイルを公開したい場合は、それを `public/` の中に入れます。
-
-- **トップページにしたい場合** → ファイル名を `index.html` にして `public/index.html` を置き換える
-- **別のページとして追加したい場合** → 例えば `public/about.html` として置くと
-  `https://（サイト名）.pages.dev/about.html` で表示される
-
-画像や CSS を使っている場合は、それらも一緒に `public/` の中に入れてください。
-HTML から参照するパスは `public/` の中での位置関係で書きます（例: `public/img/logo.png` なら `<img src="img/logo.png">`）。
+画像や CSS も一緒に直下（またはその中のフォルダ）に置き、HTMLからは置いた場所どおりのパスで参照します
+（例: `img/logo.png` に置いたなら `<img src="img/logo.png">`）。
 
 ### GitHub の画面からアップロードする方法
 
 コマンドを使わずにブラウザだけで追加できます。
 
 1. https://github.com/harukaho-cell/my-first-repo を開く
-2. `public` フォルダをクリックして開く
-3. 右上の **Add file** → **Upload files** をクリック
-4. ダウンロードフォルダのファイルをドラッグ＆ドロップ
-5. 下の **Commit changes** をクリック
+2. 右上の **Add file** → **Upload files** をクリック
+3. ファイルをドラッグ＆ドロップ
+4. 下の **Commit changes** をクリック
 
 ---
 
@@ -112,10 +111,10 @@ GitHub Pages ではなく Cloudflare Pages を使いたい場合の手順です�
 | Production branch | `main` |
 | Framework preset | `None` |
 | Build command | **空のまま**（何も入力しない） |
-| Build output directory | `public` |
+| Build output directory | 空のまま（リポジトリ直下を公開） |
 
 > HTML ファイルをそのまま公開するだけなので、ビルドコマンドは不要です。
-> **Build output directory に `public` と入れる**のがいちばん大事なポイントです。
+> Cloudflare を使う場合は、公開するフォルダの指定に注意してください。
 
 入力したら **Save and Deploy** をクリックします。
 
@@ -135,7 +134,7 @@ https://（Project name）.pages.dev
 
 ## 公開したあとの更新方法
 
-`public/` の中身を変更して push すると、Cloudflare が自動で検知して数十秒で反映されます。
+ファイルを変更して push すると、Cloudflare が自動で検知して数十秒で反映されます。
 
 ```bash
 git add .
@@ -170,7 +169,7 @@ Cloudflare でドメインを管理している場合は自動で設定されま
 | お客様の声 | `いただいた感想をそのまま掲載します。実際の口コミ文をここに入れてください。` | 実際の声に差し替えるか、セクションごと削除する |
 
 また、写真が入る場所は現在グレーの枠になっています（`店内・施術中の写真（縦）`、`作例 01` など）。
-写真を用意できたら `public/` に画像を置いて差し替えられます。この作業もお手伝いできます。
+写真を用意できたらリポジトリに画像を置いて差し替えられます。この作業もお手伝いできます。
 
 掲載されている住所・電話番号・料金が実際のお店の情報と合っているかも、公開前に一度ご確認ください。
 
