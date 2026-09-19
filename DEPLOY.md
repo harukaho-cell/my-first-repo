@@ -1,7 +1,34 @@
-# Cloudflare Pages での公開手順
+# 公開手順
 
-このリポジトリを Cloudflare Pages に連携して、Web ページを公開するための手順です。
-一度つなげてしまえば、あとは `git push` するだけでサイトが自動で更新されます。
+このリポジトリの `public/` フォルダを Web サイトとして公開するための手順です。
+
+現在は **GitHub Pages** で公開しています（下記）。Cloudflare Pages で公開したい場合の手順も後半に残してあります。
+
+---
+
+## 現在の公開方法: GitHub Pages（設定済み・自動）
+
+`.github/workflows/deploy-pages.yml` が `main` への push を検知して、`public/` の中身を自動で公開します。
+**追加の設定やアカウント連携は不要です。** 公開URLはこちら。
+
+```
+https://harukaho-cell.github.io/my-first-repo/
+```
+
+### 更新のしかた
+
+`public/` の中身を変更して `main` に反映するだけです。1〜2分で公開ページに反映されます。
+
+```bash
+git add .
+git commit -m "ページを更新"
+git push
+```
+
+### 公開状況の確認
+
+リポジトリの **Actions** タブを開くと、公開処理の進行状況と結果が見られます。
+緑のチェックが付けば公開完了、赤い×が付いていればそこにエラー内容が表示されます。
 
 ---
 
@@ -47,6 +74,14 @@ HTML から参照するパスは `public/` の中での位置関係で書きま�
 5. 下の **Commit changes** をクリック
 
 ---
+
+---
+
+# （参考）Cloudflare Pages で公開する場合
+
+GitHub Pages ではなく Cloudflare Pages を使いたい場合の手順です。
+独自ドメインや配信速度、アクセス解析などで Cloudflare を使いたくなったときに参照してください。
+※ 両方同時に公開することもできます（URLが2つになります）。
 
 ## 手順2: Cloudflare にサインアップ／ログイン
 

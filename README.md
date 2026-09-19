@@ -12,6 +12,12 @@ Gitの練習用リポジトリです。
 | `hello.py` / `hello.txt` | Gitの練習用ファイル（公開されません） |
 | `*.jpg` | 練習用の画像（公開されません） |
 
+| `.github/workflows/` | 公開を自動で行う設定 |
+
 ## Webページの公開
 
-Cloudflare Pages で公開する手順は [DEPLOY.md](DEPLOY.md) にまとめています。
+GitHub Pages で公開しています。`main` に push すると自動で更新されます。
+
+https://harukaho-cell.github.io/my-first-repo/
+
+詳しい手順とCloudflare Pagesを使う場合の手順は [DEPLOY.md](DEPLOY.md) にまとめています。
