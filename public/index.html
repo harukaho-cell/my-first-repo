@@ -1,339 +1,238 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>さくら整骨院 | 地域に根ざした整骨院</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>床屋ぐっさん | 埼玉県和光市白子の理容室</title>
+  <meta name="description" content="埼玉県和光市白子の理容室「床屋ぐっさん」。カット、顔そり、ヘッドスパ。髪質と骨格に合わせてていねいに仕上げる予約制の理容室です。">
+  <meta name="theme-color" content="#1b5c47">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="床屋ぐっさん | 埼玉県和光市白子の理容室">
+  <meta property="og:description" content="カット、顔そり、ヘッドスパ。髪質と骨格に合わせてていねいに仕上げる予約制の理容室です。">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; color: #333; }
-
-    /* ヘッダー */
-    header {
-      background: #1a6b3c;
-      color: white;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    header h1 { font-size: 2rem; font-weight: bold; letter-spacing: 0.05em; }
-    header .tel { font-size: 1.4rem; font-weight: bold; }
-    header .hours { font-size: 0.8rem; opacity: 0.9; margin-top: 4px; }
-
-    /* ナビ */
-    nav {
-      background: #2e8b57;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
-      padding: 0 16px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 12px 16px;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-    nav a:hover { background: #1a6b3c; }
-
-    /* バッジ */
-    .badges {
-      background: #f0faf4;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 24px;
-      border-bottom: 2px solid #2e8b57;
-    }
-    .badge {
-      background: #2e8b57;
-      color: white;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
-
-    /* ヒーロー */
-    .hero {
-      background: linear-gradient(135deg, #1a6b3c 0%, #2e8b57 50%, #3cb371 100%);
-      color: white;
-      text-align: center;
-      padding: 60px 24px;
-    }
-    .hero h2 { font-size: 2.8rem; margin-bottom: 16px; line-height: 1.4; }
-    .hero h2 .clinic-name { font-size: 3.6rem; display: block; margin-top: 8px; color: #a8e6c1; }
-    .hero p { font-size: 1rem; opacity: 0.75; max-width: 600px; margin: 0 auto 24px; color: #d4f5e4; }
-    .hero .btn {
-      display: inline-block;
-      background: white;
-      color: #2e8b57;
-      padding: 14px 32px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    /* セクション共通 */
-    section { padding: 48px 24px; max-width: 900px; margin: 0 auto; }
-    section h2 {
-      font-size: 1.5rem;
-      color: #1a6b3c;
-      border-left: 5px solid #2e8b57;
-      padding-left: 12px;
-      margin-bottom: 24px;
-    }
-    section h3 { font-size: 1.1rem; color: #2e8b57; margin: 20px 0 8px; }
-
-    /* 治療メニュー */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .menu-card {
-      background: #f0faf4;
-      border: 2px solid #2e8b57;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-    }
-    .menu-card .icon { font-size: 2rem; margin-bottom: 8px; }
-    .menu-card p { font-size: 0.85rem; color: #555; margin-top: 6px; }
-
-    /* 院内情報テーブル */
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    th, td { border: 1px solid #ccc; padding: 10px 14px; font-size: 0.9rem; }
-    th { background: #2e8b57; color: white; width: 130px; text-align: left; }
-    td { background: #fff; }
-
-    /* 診療時間テーブル */
-    .hours-table th { text-align: center; }
-    .hours-table td { text-align: center; }
-    .hours-table .label { text-align: left; background: #f0faf4; font-weight: bold; }
-
-    /* スタッフ */
-    .staff-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 16px;
-    }
-    .staff-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      background: #fafafa;
-    }
-    .staff-card .avatar {
-      width: 60px; height: 60px;
-      background: #2e8b57;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1.5rem;
-      margin-bottom: 12px;
-    }
-    .staff-card h3 { color: #1a6b3c; margin: 0 0 4px; }
-    .staff-card .role { font-size: 0.8rem; color: #888; margin-bottom: 10px; }
-    .staff-card p { font-size: 0.88rem; line-height: 1.6; }
-
-    /* フッター */
-    footer {
-      background: #1a6b3c;
-      color: white;
-      text-align: center;
-      padding: 24px;
-      font-size: 0.85rem;
-      margin-top: 40px;
-    }
-    footer a { color: #a8e6c1; text-decoration: none; margin: 0 8px; }
-
-    /* 区切り */
-    .divider { border: none; border-top: 2px solid #e0f0e8; margin: 0; }
+  body { margin:0; background:oklch(0.97 0.006 90); -webkit-font-smoothing:antialiased; }
+  a { color:oklch(0.42 0.045 160); text-decoration:none; }
+  a:hover { color:oklch(0.32 0.05 160); }
+  @keyframes scfade { from { opacity:0; transform:translateY(8px);} to { opacity:1; transform:none;} }
   </style>
 </head>
 <body>
+<div style="font-family:'Zen Kaku Gothic New',system-ui,sans-serif; color:oklch(0.24 0.012 70); background:oklch(0.97 0.006 90); max-width:1100px; margin:0 auto; padding-bottom:84px; line-height:1.85;">
 
-<!-- ヘッダー -->
-<header>
-  <div>
-    <h1>さくら整骨院</h1>
-    <div style="font-size:0.85rem; opacity:0.85;">地域に根ざした、やさしい整骨院</div>
+  <header style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 22px; position:sticky; top:0; z-index:20; background:oklch(0.97 0.006 90 / 0.92); backdrop-filter:blur(8px); border-bottom:1px solid oklch(0.88 0.008 80);">
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <span style="font-family:'Zen Old Mincho',serif; font-size:19px; font-weight:600; letter-spacing:0.14em;">床屋ぐっさん</span>
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.52 0.012 70);">BARBER &amp; SALON</span>
+    </div>
+    <nav style="display:none;"></nav>
+    <a href="tel:0482352656" style="display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:oklch(0.42 0.045 160); color:oklch(0.98 0.005 90); font-size:13px; font-weight:700; letter-spacing:0.06em;">電話で予約</a>
+  </header>
+
+  <section style="position:relative; padding:0;">
+    <div style="position:relative; aspect-ratio:4/5; max-height:620px; width:100%; background:repeating-linear-gradient(135deg, oklch(0.90 0.008 80) 0 14px, oklch(0.93 0.007 80) 14px 28px); display:flex; align-items:flex-end;">
+      <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:ui-monospace,monospace; font-size:11px; letter-spacing:0.1em; color:oklch(0.55 0.01 70);">店内・施術中の写真（縦）</span>
+      <div style="position:relative; width:100%; padding:28px 22px 26px; background:linear-gradient(to top, oklch(0.20 0.012 70 / 0.78), transparent);">
+        <h1 style="margin:0 0 10px; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:clamp(28px,7vw,44px); line-height:1.4; letter-spacing:0.06em; color:oklch(0.98 0.004 90); text-wrap:pretty;">整える時間を、<br />ていねいに。</h1>
+        <p style="margin:0; font-size:14px; color:oklch(0.93 0.006 90); max-width:32em;">カット、シェービング、ヘッドスパ。ひとりひとりの髪質と骨格に合わせて仕上げる、予約制の理容室です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid oklch(0.88 0.008 80);">
+    <div style="padding:18px 12px; text-align:center; border-right:1px solid oklch(0.88 0.008 80);">
+      <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.55 0.012 70); margin-bottom:4px;">営業時間</div>
+      <div style="font-size:14px; font-weight:500;">9:00 – 19:30</div>
+    </div>
+    <div style="padding:18px 12px; text-align:center; border-right:1px solid oklch(0.88 0.008 80);">
+      <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.55 0.012 70); margin-bottom:4px;">定休日</div>
+      <div style="font-size:14px; font-weight:500;">【定休日】</div>
+    </div>
+    <div style="padding:18px 12px; text-align:center;">
+      <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.55 0.012 70); margin-bottom:4px;">ご予約</div>
+      <div style="font-size:14px; font-weight:500;">お電話にて</div>
+    </div>
+  </section>
+
+  <section id="menu" style="padding:56px 22px 48px;">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:28px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.48 0.045 160);">MENU</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em;">メニュー・料金</h2>
+    </div>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; align-items:baseline; gap:14px; padding:16px 0; border-top:1px solid oklch(0.88 0.008 80);">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:500;">カット</div>
+          <div style="font-size:12px; color:oklch(0.52 0.012 70);">シャンプー・ブロー込み / 約50分</div>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif; font-size:17px; white-space:nowrap;">¥4,400</div>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:14px; padding:16px 0; border-top:1px solid oklch(0.88 0.008 80);">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:500;">カット＋顔そり</div>
+          <div style="font-size:12px; color:oklch(0.52 0.012 70);">スチームタオル付き / 約70分</div>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif; font-size:17px; white-space:nowrap;">¥5,500</div>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:14px; padding:16px 0; border-top:1px solid oklch(0.88 0.008 80);">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:500;">シェービング</div>
+          <div style="font-size:12px; color:oklch(0.52 0.012 70);">顔そり・眉整え / 約40分</div>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif; font-size:17px; white-space:nowrap;">¥3,300</div>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:14px; padding:16px 0; border-top:1px solid oklch(0.88 0.008 80);">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:500;">ヘッドスパ</div>
+          <div style="font-size:12px; color:oklch(0.52 0.012 70);">炭酸クレンジング / 約30分</div>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif; font-size:17px; white-space:nowrap;">¥2,750</div>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:14px; padding:16px 0; border-top:1px solid oklch(0.88 0.008 80); border-bottom:1px solid oklch(0.88 0.008 80);">
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:16px; font-weight:500;">キッズカット</div>
+          <div style="font-size:12px; color:oklch(0.52 0.012 70);">小学生以下 / 約30分</div>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif; font-size:17px; white-space:nowrap;">¥2,200</div>
+      </div>
+    </div>
+    <p style="margin:14px 0 0; font-size:11px; color:oklch(0.55 0.012 70);">表示価格は税込みです。学生割引はご来店時にお申し出ください。</p>
+  </section>
+
+  <section id="gallery" style="padding:44px 0 52px; background:oklch(0.94 0.008 80);">
+    <div style="display:flex; flex-direction:column; gap:6px; margin:0 22px 22px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.48 0.045 160);">GALLERY</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em;">店内・作例</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; padding:0 22px;">
+      <div style="aspect-ratio:3/4; background:repeating-linear-gradient(135deg, oklch(0.88 0.008 80) 0 12px, oklch(0.91 0.007 80) 12px 24px); display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace,monospace; font-size:10px; color:oklch(0.52 0.01 70);">作例 01</span></div>
+      <div style="aspect-ratio:3/4; background:repeating-linear-gradient(135deg, oklch(0.88 0.008 80) 0 12px, oklch(0.91 0.007 80) 12px 24px); display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace,monospace; font-size:10px; color:oklch(0.52 0.01 70);">作例 02</span></div>
+      <div style="aspect-ratio:3/4; background:repeating-linear-gradient(135deg, oklch(0.88 0.008 80) 0 12px, oklch(0.91 0.007 80) 12px 24px); display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace,monospace; font-size:10px; color:oklch(0.52 0.01 70);">店内</span></div>
+      <div style="aspect-ratio:3/4; background:repeating-linear-gradient(135deg, oklch(0.88 0.008 80) 0 12px, oklch(0.91 0.007 80) 12px 24px); display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace,monospace; font-size:10px; color:oklch(0.52 0.01 70);">作例 03</span></div>
+    </div>
+  </section>
+
+  <section id="staff" style="padding:56px 22px 48px;">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:26px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.48 0.045 160);">STAFF</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em;">スタッフ紹介</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px;">
+      <div style="display:flex; gap:16px; align-items:flex-start;">
+        <div style="width:96px; flex:none; aspect-ratio:3/4; background:oklch(0.91 0.008 80); overflow:hidden;">
+          <svg viewBox="0 0 96 128" style="width:100%; height:100%; display:block;" role="img" aria-label="店長のイラスト">
+            <rect width="96" height="128" fill="oklch(0.91 0.008 80)"></rect>
+            <path d="M14 128c0-20 15-30 34-30s34 10 34 30z" fill="oklch(0.42 0.045 160)"></path>
+            <path d="M40 92h16v14H40z" fill="oklch(0.80 0.03 60)"></path>
+            <circle cx="48" cy="66" r="24" fill="oklch(0.84 0.035 60)"></circle>
+            <path d="M24 60a24 24 0 0148 0v-4a24 24 0 00-48 0z" fill="oklch(0.55 0.012 70)"></path>
+            <path d="M24 62c0-16 11-26 24-26s24 10 24 26c0-6-10-10-24-10s-24 4-24 10z" fill="oklch(0.55 0.012 70)"></path>
+            <rect x="35" y="62" width="9" height="3" rx="1.5" fill="oklch(0.30 0.012 70)"></rect>
+            <rect x="52" y="62" width="9" height="3" rx="1.5" fill="oklch(0.30 0.012 70)"></rect>
+            <path d="M40 76c3 3 13 3 16 0" stroke="oklch(0.34 0.02 50)" stroke-width="3" stroke-linecap="round" fill="none"></path>
+            <path d="M33 54c3-2 7-2 10 0M53 54c3-2 7-2 10 0" stroke="oklch(0.48 0.015 70)" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+            <path d="M48 106v22" stroke="oklch(0.36 0.04 160)" stroke-width="2" fill="none"></path>
+          </svg>
+        </div>
+        <div style="min-width:0;">
+          <div style="font-family:'Zen Old Mincho',serif; font-size:17px; letter-spacing:0.06em;">【店長名】</div>
+          <div style="font-size:11px; letter-spacing:0.14em; color:oklch(0.48 0.045 160); margin-bottom:8px;">店長 / 理容師</div>
+          <p style="margin:0; font-size:13px; color:oklch(0.38 0.012 70);">経歴やこだわりをここに。得意なスタイル、担当できるメニューなど。</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:16px; align-items:flex-start;">
+        <div style="width:96px; flex:none; aspect-ratio:3/4; background:repeating-linear-gradient(135deg, oklch(0.90 0.008 80) 0 10px, oklch(0.93 0.007 80) 10px 20px); display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace,monospace; font-size:9px; color:oklch(0.52 0.01 70);">人物</span></div>
+        <div style="min-width:0;">
+          <div style="font-family:'Zen Old Mincho',serif; font-size:17px; letter-spacing:0.06em;">【スタッフ名】</div>
+          <div style="font-size:11px; letter-spacing:0.14em; color:oklch(0.48 0.045 160); margin-bottom:8px;">理容師</div>
+          <p style="margin:0; font-size:13px; color:oklch(0.38 0.012 70);">経歴やこだわりをここに。得意なスタイル、担当できるメニューなど。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="voice" style="padding:48px 22px; background:oklch(0.94 0.008 80);">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:24px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.48 0.045 160);">VOICE</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em;">お客様の声</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
+      <div style="background:oklch(0.98 0.004 90); padding:20px; border:1px solid oklch(0.89 0.008 80);">
+        <p style="margin:0 0 12px; font-size:14px;">いただいた感想をそのまま掲載します。実際の口コミ文をここに入れてください。</p>
+        <div style="font-size:11px; color:oklch(0.52 0.012 70);">40代・男性</div>
+      </div>
+      <div style="background:oklch(0.98 0.004 90); padding:20px; border:1px solid oklch(0.89 0.008 80);">
+        <p style="margin:0 0 12px; font-size:14px;">いただいた感想をそのまま掲載します。実際の口コミ文をここに入れてください。</p>
+        <div style="font-size:11px; color:oklch(0.52 0.012 70);">30代・男性</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" style="padding:52px 22px 48px;">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:22px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.48 0.045 160);">NEWS</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em;">お知らせ</h2>
+    </div>
+    <div style="display:flex; flex-direction:column;">
+      <a href="#news" style="display:flex; flex-wrap:wrap; gap:4px 16px; padding:15px 0; border-top:1px solid oklch(0.88 0.008 80); color:inherit;">
+        <span style="font-family:ui-monospace,monospace; font-size:12px; color:oklch(0.52 0.012 70); min-width:88px;">2026.09.01</span>
+        <span style="font-size:14px; flex:1; min-width:180px;">お知らせのタイトルをここに</span>
+      </a>
+      <a href="#news" style="display:flex; flex-wrap:wrap; gap:4px 16px; padding:15px 0; border-top:1px solid oklch(0.88 0.008 80); color:inherit;">
+        <span style="font-family:ui-monospace,monospace; font-size:12px; color:oklch(0.52 0.012 70); min-width:88px;">2026.08.12</span>
+        <span style="font-size:14px; flex:1; min-width:180px;">夏季休業のご案内</span>
+      </a>
+      <a href="#news" style="display:flex; flex-wrap:wrap; gap:4px 16px; padding:15px 0; border-top:1px solid oklch(0.88 0.008 80); border-bottom:1px solid oklch(0.88 0.008 80); color:inherit;">
+        <span style="font-family:ui-monospace,monospace; font-size:12px; color:oklch(0.52 0.012 70); min-width:88px;">2026.07.20</span>
+        <span style="font-size:14px; flex:1; min-width:180px;">ヘッドスパメニューを追加しました</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="access" style="padding:52px 22px 60px; background:oklch(0.22 0.012 70); color:oklch(0.95 0.005 90);">
+    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:22px;">
+      <span style="font-size:10px; letter-spacing:0.28em; color:oklch(0.78 0.04 160);">ACCESS</span>
+      <h2 style="margin:0; font-family:'Zen Old Mincho',serif; font-weight:600; font-size:26px; letter-spacing:0.08em; color:oklch(0.97 0.004 90);">アクセス</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; align-items:start;">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.72 0.02 80); margin-bottom:4px;">住所</div>
+          <a href="https://www.google.com/maps/dir//%E5%BA%8A%E5%B1%8B%E3%81%90%E3%81%A3%E3%81%95%E3%82%93%E3%80%81%E3%80%92351-0101+%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%92%8C%E5%85%89%E5%B8%82%E7%99%BD%E5%AD%90%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%94%EF%BC%93/@35.7830243,139.6197098,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x6018ec084d588bc1:0x9413defb1b5df4f3!2m2!1d139.6221325!2d35.7731185?hl=ja" target="_blank" rel="noopener" style="font-size:15px; color:oklch(0.95 0.005 90); text-decoration:underline; text-underline-offset:4px;">〒351-0101<br />埼玉県和光市白子1丁目17-43</a>
+        </div>
+        <div>
+          <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.72 0.02 80); margin-bottom:4px;">電話</div>
+          <a href="tel:0482352656" style="font-family:'Zen Old Mincho',serif; font-size:24px; letter-spacing:0.06em; color:oklch(0.97 0.004 90);">048-235-2656</a>
+        </div>
+        <div>
+          <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.72 0.02 80); margin-bottom:4px;">営業時間</div>
+          <div style="font-size:15px;">9:00 – 19:30</div>
+        </div>
+        <div>
+          <div style="font-size:10px; letter-spacing:0.2em; color:oklch(0.72 0.02 80); margin-bottom:4px;">駐車場</div>
+          <div style="font-size:15px;">【要確認】</div>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/dir//%E5%BA%8A%E5%B1%8B%E3%81%90%E3%81%A3%E3%81%95%E3%82%93%E3%80%81%E3%80%92351-0101+%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%92%8C%E5%85%89%E5%B8%82%E7%99%BD%E5%AD%90%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%94%EF%BC%93/@35.7830243,139.6197098,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x6018ec084d588bc1:0x9413defb1b5df4f3!2m2!1d139.6221325!2d35.7731185?hl=ja" target="_blank" rel="noopener" style="display:block; position:relative; aspect-ratio:4/3; overflow:hidden; border:1px solid oklch(0.34 0.012 70);">
+        <iframe title="床屋ぐっさん 地図" src="https://maps.google.com/maps?q=35.7731185,139.6221325&amp;z=17&amp;hl=ja&amp;output=embed" style="width:100%; height:100%; border:0; display:block; pointer-events:none; filter:saturate(0.85);" loading="lazy"></iframe>
+        <span style="position:absolute; left:0; right:0; bottom:0; padding:10px 12px; background:oklch(0.18 0.012 70 / 0.82); color:oklch(0.96 0.005 90); font-size:12px; letter-spacing:0.08em;">Googleマップで経路を見る →</span>
+      </a>
+    </div>
+  </section>
+
+  <footer style="padding:28px 22px 32px; text-align:center; background:oklch(0.18 0.012 70); color:oklch(0.70 0.01 80); font-size:11px; letter-spacing:0.08em;">
+    <div style="font-family:'Zen Old Mincho',serif; font-size:15px; letter-spacing:0.16em; color:oklch(0.95 0.005 90); margin-bottom:8px;">床屋ぐっさん</div>
+    © 2026 床屋ぐっさん
+  </footer>
+
+  <div style="position:fixed; left:0; right:0; bottom:0; z-index:30; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:oklch(0.97 0.006 90 / 0.94); backdrop-filter:blur(10px); border-top:1px solid oklch(0.88 0.008 80); display:flex; gap:10px; max-width:1100px; margin:0 auto;">
+    <a href="#access" style="flex:none; display:flex; align-items:center; justify-content:center; min-height:48px; padding:0 18px; border:1px solid oklch(0.42 0.045 160); border-radius:999px; font-size:14px; font-weight:500; color:oklch(0.42 0.045 160);">アクセス</a>
+    <a href="tel:0482352656" style="flex:1; display:flex; align-items:center; justify-content:center; min-height:48px; border-radius:999px; background:oklch(0.42 0.045 160); color:oklch(0.98 0.005 90); font-size:15px; font-weight:700; letter-spacing:0.08em;">電話で予約する</a>
   </div>
-  <div>
-    <div class="tel">📞 03-XXXX-XXXX</div>
-    <div class="hours">【平日】9:00〜12:30 / 15:00〜20:00　【土・祝】9:00〜15:00</div>
-  </div>
-</header>
 
-<!-- ナビ -->
-<nav>
-  <a href="#about">院について</a>
-  <a href="#menu">治療メニュー</a>
-  <a href="#info">院内情報</a>
-  <a href="#staff">スタッフ</a>
-  <a href="#contact">お問い合わせ</a>
-</nav>
-
-<!-- バッジ -->
-<div class="badges">
-  <span class="badge">平日20時まで</span>
-  <span class="badge">土曜診療</span>
-  <span class="badge">祝日診療</span>
-  <span class="badge">女性スタッフ在籍</span>
-  <span class="badge">交通事故対応</span>
-  <span class="badge">駐車場あり</span>
 </div>
-
-<!-- ヒーロー -->
-<div class="hero">
-  <h2>子どもからお年寄りまで通える<span class="clinic-name">さくら整骨院</span></h2>
-  <p>肩こり・腰痛・スポーツ障害・交通事故治療など、地域の皆様のお悩みに丁寧に向き合います。</p>
-  <a href="#contact" class="btn">予約・お問い合わせ</a>
-</div>
-
-<!-- 施術画像ギャラリー -->
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:0;">
-  <img src="https://images.pexels.com/photos/5473186/pexels-photo-5473186.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="背中の施術の様子" style="width:100%; height:220px; object-fit:cover;">
-  <img src="https://images.pexels.com/photos/5473177/pexels-photo-5473177.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="足の施術の様子" style="width:100%; height:220px; object-fit:cover;">
-  <img src="https://images.pexels.com/photos/5473223/pexels-photo-5473223.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="手の施術の様子" style="width:100%; height:220px; object-fit:cover;">
-</div>
-
-<hr class="divider">
-
-<!-- 院について -->
-<section id="about">
-  <h2>さくら整骨院について</h2>
-  <p style="line-height:1.8;">
-    骨折・脱臼・打撲・捻挫・肉離れなどのケガのケアはもちろん、
-    肩こり・頭痛・腰痛・手足のしびれ・自律神経失調症など慢性的なお悩みにも対応しています。
-    お子様のスポーツ障害・成長痛から、お年寄りの変形性関節症・リハビリまで、
-    幅広い症状に対して丁寧な施術を提供しています。<br><br>
-    交通事故・労災・生活保護にも対応しており、厚生労働省認可の整骨院です。
-  </p>
-</section>
-
-<hr class="divider">
-
-<!-- 治療メニュー -->
-<section id="menu">
-  <h2>おすすめの治療メニュー</h2>
-  <div class="menu-grid">
-    <div class="menu-card">
-      <div class="icon">🚗</div>
-      <strong>交通事故治療</strong>
-      <p>むちうち・打撲など、交通事故によるケガに対応</p>
-    </div>
-    <div class="menu-card">
-      <div class="icon">🧒</div>
-      <strong>お子様の症状</strong>
-      <p>スポーツ障害・成長痛など、子どものケアも丁寧に</p>
-    </div>
-    <div class="menu-card">
-      <div class="icon">💆</div>
-      <strong>慢性的な不調</strong>
-      <p>肩こり・腰痛・頭痛など、長年のお悩みに対応</p>
-    </div>
-    <div class="menu-card">
-      <div class="icon">🏃</div>
-      <strong>スポーツ障害</strong>
-      <p>捻挫・肉離れ・テニス肘など、スポーツのケガ全般</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- 院内情報 -->
-<section id="info">
-  <h2>院内情報・アクセス</h2>
-
-  <table>
-    <tr><th>所在地</th><td>東京都○○区○○ X-X-X</td></tr>
-    <tr><th>TEL</th><td>03-XXXX-XXXX</td></tr>
-    <tr><th>院内設備</th><td>ベッド6床・電気治療器・超音波治療器</td></tr>
-    <tr><th>支払方法</th><td>現金 / クレジットカード / 電子マネー</td></tr>
-    <tr><th>アクセス</th><td>○○駅より徒歩5分</td></tr>
-    <tr><th>駐車場</th><td>3台あり（無料）</td></tr>
-  </table>
-
-  <h3>診療時間</h3>
-  <table class="hours-table">
-    <tr>
-      <th></th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th><th>祝</th>
-    </tr>
-    <tr>
-      <td class="label">午前（9:00〜12:30）</td>
-      <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>休</td><td>○</td>
-    </tr>
-    <tr>
-      <td class="label">午後（15:00〜20:00）</td>
-      <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>15時まで</td><td>休</td><td>15時まで</td>
-    </tr>
-  </table>
-  <p style="font-size:0.85rem; color:#888; margin-top:8px;">※日曜日休診</p>
-</section>
-
-<hr class="divider">
-
-<!-- スタッフ -->
-<section id="staff">
-  <h2>スタッフ紹介</h2>
-  <div style="margin-bottom: 32px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
-    <img src="https://images.pexels.com/photos/5473179/pexels-photo-5473179.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="院長による施術の様子" style="width:100%; height:320px; object-fit:cover; display:block;">
-    <div style="background:#f0faf4; padding:12px 16px; font-size:0.9rem; color:#2e8b57; text-align:center;">▲ 院長による丁寧な施術の様子</div>
-  </div>
-
-  <div class="staff-grid" style="max-width:400px;">
-    <div class="staff-card">
-      <div class="avatar">👨</div>
-      <h3>山田 太郎</h3>
-      <div class="role">院長 / 柔道整復師</div>
-      <p>はじめまして、院長の山田です。当院では患者様一人ひとりに丁寧に向き合い、根本からの改善を目指した施術を提供しています。肩こり・腰痛・スポーツのケガ・交通事故など、どんなお悩みもまずはお気軽にご相談ください。地域の皆様の笑顔のために、全力でサポートいたします。</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- お問い合わせ -->
-<section id="contact">
-  <h2>お問い合わせ・予約</h2>
-  <p style="margin-bottom:20px; line-height:1.8;">お電話またはLINEにてご予約・お問い合わせを承っております。<br>初めての方もお気軽にご連絡ください。</p>
-  <div style="display:flex; gap:16px; flex-wrap:wrap;">
-    <a href="tel:03XXXXXXXX" style="
-      display:inline-block; background:#2e8b57; color:white;
-      padding:14px 28px; border-radius:8px; text-decoration:none;
-      font-weight:bold; font-size:1rem;">
-      📞 電話で予約する
-    </a>
-    <a href="#" style="
-      display:inline-block; background:#06c755; color:white;
-      padding:14px 28px; border-radius:8px; text-decoration:none;
-      font-weight:bold; font-size:1rem;">
-      💬 LINEで予約する
-    </a>
-  </div>
-</section>
-
-<!-- フッター -->
-<footer>
-  <p style="margin-bottom:8px;"><strong>さくら整骨院</strong></p>
-  <p>〒XXX-XXXX 東京都○○区○○ X-X-X　TEL: 03-XXXX-XXXX</p>
-  <p style="margin-top:12px;">
-    <a href="#about">院について</a>
-    <a href="#menu">治療メニュー</a>
-    <a href="#info">アクセス</a>
-    <a href="#staff">スタッフ</a>
-    <a href="#contact">お問い合わせ</a>
-  </p>
-  <p style="margin-top:16px; opacity:0.7;">©2026 さくら整骨院. All Rights Reserved.</p>
-</footer>
-
 </body>
 </html>
